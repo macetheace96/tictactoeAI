@@ -32,9 +32,10 @@ class GeneticAI(Player):
 		if not save_dir:
 			if not resume_dir:
 				save_dir = f"weights/genetic/{datetime.now()}"
-				os.mkdir(save_dir)
 			else:
 				save_dir = resume_dir
+		if not os.path.isdir(save_dir):
+			os.mkdir(save_dir)
 		population = self.init_population(pop_size, resume_dir)
 		population = self.evaluate(population)
 
@@ -173,4 +174,4 @@ class GeneticAI(Player):
 
 if __name__ == "__main__":
 	ai = GeneticAI(0)
-	ai.train_genetic(resume_dir="/Users/masonfp/Desktop/cs/tictactoeAI/weights/genetic/2019-04-28 19:08:33.292615")
+	ai.train_genetic(save_dir="weights/genetic/first_run")
